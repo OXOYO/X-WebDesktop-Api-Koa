@@ -1,0 +1,196 @@
+-- phpMyAdmin SQL Dump
+-- version 4.6.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: 2017-11-27 10:12:12
+-- 服务器版本： 5.7.14
+-- PHP Version: 5.6.25
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `x-webdesktop`
+--
+CREATE DATABASE IF NOT EXISTS `x-webdesktop` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `x-webdesktop`;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `platform_apps`
+--
+
+CREATE TABLE `platform_apps` (
+  `id` int(11) NOT NULL COMMENT '应用ID',
+  `name` varchar(32) NOT NULL COMMENT '应用名称',
+  `title` varchar(32) NOT NULL COMMENT '应用标题',
+  `description` varchar(500) NOT NULL COMMENT '应用描述信息',
+  `type` tinyint(1) NOT NULL COMMENT '类别：0默认应用 1普通应用',
+  `user_type` tinyint(1) NOT NULL COMMENT '用户类别：0管理员 1普通用户',
+  `publish` tinyint(1) NOT NULL COMMENT '状态：0 已导入未发布 1 已导入并发布',
+  `config` varchar(500) NOT NULL COMMENT '应用默认配置信息',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` datetime NOT NULL COMMENT '更新时间'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='应用市场';
+
+--
+-- 转存表中的数据 `platform_apps`
+--
+
+INSERT INTO `platform_apps` (`id`, `name`, `title`, `description`, `type`, `user_type`, `publish`, `config`, `create_time`, `update_time`) VALUES
+(1, 'AccountManagement', '账号管理', '用于管理系统的账号。', 0, 0, 1, '{"app":{"icon":"/static/desktopIcon/AccountManagement.png","x":0,"y":0,"index":""},"modal":{"size":"middle","isShow":false,"zIndex":600,"enableResize":["min","max","reset","close"],"type":"modal"},"taskBar":{"isPinned":false}}', '2017-07-10 10:59:14', '2017-11-14 07:19:57'),
+(2, 'ApplicationMarket', '应用市场', '搜罗所有应用。', 0, 1, 1, '{"app":{"icon":"/static/desktopIcon/ApplicationMarket.png","x":0,"y":80,"index":""},"modal":{"size":"middle","isShow":false,"zIndex":600,"enableResize":["min","max","reset","close"],"type":"modal"},"taskBar":{"isPinned":false}}', '2017-07-10 10:59:51', '2017-11-14 07:20:04'),
+(3, 'MyApplication', 'My Apps', '当前用户已安装的应用列表。', 0, 1, 1, '{"app":{"icon":"/static/desktopIcon/MyApplication.png","x":0,"y":160,"index":""},"modal":{"size":"middle","isShow":false,"zIndex":600,"enableResize":["min","max","reset","close"],"type":"modal"},"taskBar":{"isPinned":false}}', '2017-07-10 11:00:04', '2017-11-14 07:20:13'),
+(4, 'PermissionApply', '权限申请', '权限申请模块。', 0, 0, 0, '{"app":{"icon":"/static/desktopIcon/PermissionApply.png","x":0,"y":240,"index":""},"modal":{"size":"middle","isShow":false,"zIndex":600,"enableResize":["min","max","reset","close"],"type":"modal"},"taskBar":{"isPinned":false}}', '2017-07-10 11:00:22', '2017-11-14 07:20:23'),
+(5, 'PermissionAudit', '权限审核', '权限审核模块。', 0, 0, 0, '{"app":{"icon":"/static/desktopIcon/PermissionAudit.png","x":0,"y":320,"index":""},"modal":{"size":"middle","isShow":false,"zIndex":600,"enableResize":["min","max","reset","close"],"type":"modal"},"taskBar":{"isPinned":false}}', '2017-07-10 11:00:32', '2017-11-14 07:20:33'),
+(6, 'PersonalCenter', '个人中心', '个人中心包含用户的个人信息。', 0, 1, 1, '{"app":{"icon":"/static/desktopIcon/PersonalCenter.png","x":0,"y":400,"index":""},"modal":{"size":"max","isShow":false,"zIndex":600,"enableResize":["min","max","reset","close"],"type":"modal"},"taskBar":{"isPinned":false}}', '2017-07-10 11:00:52', '2017-11-14 07:20:44'),
+(7, 'ReleaseApplication', '发布应用', '管理员可以在这里发布、下架应用。', 0, 0, 0, '{"app":{"icon":"/static/desktopIcon/ReleaseApplication.png","x":0,"y":0,"index":""},"modal":{"size":"middle","isShow":false,"zIndex":600,"enableResize":["min","max","reset","close"],"type":"modal"},"taskBar":{"isPinned":false}}', '2017-07-10 11:01:02', '2017-11-14 07:20:50'),
+(8, 'SystemSetting', '系统设置', '平台系统设置。', 0, 1, 0, '{"app":{"icon":"/static/desktopIcon/SystemSetting.png","x":0,"y":480,"index":""},"modal":{"size":"middle","isShow":false,"zIndex":600,"enableResize":["min","max","reset","close"],"type":"modal"},"taskBar":{"isPinned":false}}', '2017-07-21 17:33:32', '2017-11-14 07:20:56'),
+(11, 'testAddApp', '测试新增应用', '这是一条应用的', 1, 1, 1, '{"app":{"icon":"/static/app.png","index":"","url":"http://www.baidu.com"},"modal":{"type":"iframe","size":"max","isShow":false,"zIndex":600,"enableResize":["min","max","reset","close"]},"taskBar":{"isPinned":false}}', '2017-11-14 02:44:27', '2017-11-14 07:21:31');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `platform_config`
+--
+
+CREATE TABLE `platform_config` (
+  `id` int(11) NOT NULL COMMENT '配置ID',
+  `user_id` int(11) NOT NULL COMMENT '用户ID',
+  `config` varchar(500) NOT NULL COMMENT '平台配置信息',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` datetime NOT NULL COMMENT '更新时间'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='平台配置信息';
+
+--
+-- 转存表中的数据 `platform_config`
+--
+
+INSERT INTO `platform_config` (`id`, `user_id`, `config`, `create_time`, `update_time`) VALUES
+(1, 1, '{"themes":{"name":"webDesktop","config":{}}}', '2017-07-13 16:10:58', '2017-07-13 16:10:58');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `platform_users`
+--
+
+CREATE TABLE `platform_users` (
+  `id` int(11) NOT NULL COMMENT '用户ID',
+  `account` varchar(32) NOT NULL COMMENT '账号',
+  `password` varchar(32) NOT NULL COMMENT '密码',
+  `name` varchar(32) NOT NULL COMMENT '用户名',
+  `type` tinyint(1) NOT NULL COMMENT '类型：0管理员 1普通用户',
+  `status` tinyint(1) NOT NULL COMMENT '状态：0停用 1启用',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` datetime NOT NULL COMMENT '更新时间'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户信息表';
+
+--
+-- 转存表中的数据 `platform_users`
+--
+
+INSERT INTO `platform_users` (`id`, `account`, `password`, `name`, `type`, `status`, `create_time`, `update_time`) VALUES
+(1, 'admin', '', '管理员', 0, 1, '2017-07-20 09:18:04', '2017-11-16 09:26:58');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `platform_user_apps`
+--
+
+CREATE TABLE `platform_user_apps` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL COMMENT '用户ID',
+  `app_id` int(11) NOT NULL COMMENT '应用ID',
+  `app_name` varchar(32) NOT NULL COMMENT '应用名称',
+  `app_title` varchar(32) NOT NULL COMMENT '应用标题',
+  `app_description` varchar(500) NOT NULL COMMENT '应用描述信息',
+  `app_type` tinyint(1) NOT NULL COMMENT '类别：0默认应用 1普通应用',
+  `app_publish` tinyint(1) NOT NULL COMMENT '应用状态: 0 已导入未发布 1 已导入并发布',
+  `user_type` tinyint(1) NOT NULL COMMENT '用户类别：0 管理员 1 普通用户',
+  `status` tinyint(1) NOT NULL COMMENT '状态：0 停用 1 启用',
+  `private` tinyint(1) NOT NULL COMMENT '私有应用：0 否 1 是',
+  `config` varchar(500) NOT NULL COMMENT '应用配置信息',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` datetime NOT NULL COMMENT '更新时间'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户已安装应用信息表';
+
+--
+-- 转存表中的数据 `platform_user_apps`
+--
+
+INSERT INTO `platform_user_apps` (`id`, `user_id`, `app_id`, `app_name`, `app_title`, `app_description`, `app_type`, `app_publish`, `user_type`, `status`, `private`, `config`, `create_time`, `update_time`) VALUES
+(1, 1, 1, 'AccountManagement', '账号管理', '用于管理系统的账号。', 0, 1, 0, 1, 0, '{"app":{"icon":"//localhost:3000/assets/uploads/1510563390955.png","x":0,"y":0,"index":""},"modal":{"type":"modal","size":"middle","isShow":false,"zIndex":600,"enableResize":["min","max","reset","close"]},"taskBar":{"isPinned":false}}', '2017-07-14 17:05:39', '2017-11-13 08:56:34'),
+(2, 1, 2, 'ApplicationMarket', '应用市场', '搜罗所有应用。', 0, 1, 0, 1, 0, '{"app":{"icon":"//localhost:3000/assets/uploads/1510563405978.png","x":0,"y":80,"index":""},"modal":{"type":"modal","size":"middle","isShow":false,"zIndex":600,"enableResize":["min","max","reset","close"]},"taskBar":{"isPinned":true}}', '2017-07-14 17:06:06', '2017-11-13 08:56:47'),
+(3, 1, 3, 'MyApplication', '我的应用', '当前用户已安装的应用列表。', 0, 1, 0, 1, 0, '{"app":{"icon":"//localhost:3000/assets/uploads/1510563423563.png","x":0,"y":160,"index":""},"modal":{"type":"modal","size":"middle","isShow":false,"zIndex":600,"enableResize":["min","max","reset","close"]},"taskBar":{"isPinned":true}}', '2017-07-14 17:06:29', '2017-11-13 08:57:05'),
+(4, 1, 4, 'PermissionApply', '权限申请', '权限申请模块。', 0, 1, 0, 1, 0, '{"app":{"icon":"//localhost:3000/assets/uploads/1510563439139.png","x":0,"y":240,"index":""},"modal":{"type":"modal","size":"middle","isShow":false,"zIndex":600,"enableResize":["min","max","reset","close"]},"taskBar":{"isPinned":false}}', '2017-07-14 17:08:23', '2017-11-13 08:57:22'),
+(5, 1, 5, 'PermissionAudit', '权限审核', '权限审核模块。', 0, 1, 0, 1, 0, '{"app":{"icon":"//localhost:3000/assets/uploads/1510563458431.png","x":0,"y":320,"index":""},"modal":{"type":"modal","size":"middle","isShow":false,"zIndex":600,"enableResize":["min","max","reset","close"]},"taskBar":{"isPinned":false}}', '2017-07-14 17:08:37', '2017-11-13 08:57:46'),
+(6, 1, 6, 'PersonalCenter', '个人中心', '个人中心包含用户的个人信息。', 0, 1, 0, 1, 0, '{"app":{"icon":"//localhost:3000/assets/uploads/1510563485858.png","x":0,"y":400,"index":""},"modal":{"type":"modal","size":"middle","isShow":false,"zIndex":600,"enableResize":["min","max","reset","close"]},"taskBar":{"isPinned":false}}', '2017-07-14 17:09:19', '2017-11-13 08:58:08'),
+(10, 1, 8, 'SystemSetting', '系统设置', '平台系统设置。', 0, 1, 0, 1, 0, '{"app":{"icon":"//localhost:3000/assets/uploads/1510563499921.png","x":0,"y":480,"index":""},"modal":{"type":"modal","size":"middle","isShow":false,"zIndex":600,"enableResize":["min","max","reset","close"]},"taskBar":{"isPinned":true}}', '2017-09-21 00:00:00', '2017-11-13 08:58:21'),
+(14, 1, 1001, 'testPrivate', '测试私有应用1113001', '这是我的第一个私有应用。', 1, 1, 1, 1, 1, '{"app":{"icon":"//localhost:3000/assets/uploads/1510563686271.png","x":0,"y":160,"index":"","url":"http://www.baidu.com","title":"测试私有应用","description":"这是我的第一个私有应用"},"modal":{"type":"iframe","size":"middle","isShow":false,"zIndex":600,"enableResize":["min","max","reset","close"]},"taskBar":{"isPinned":false}}', '2017-11-13 07:00:52', '2017-11-13 09:01:28'),
+(17, 1, 11, 'testAddApp', '测试新增应用', '这是一条应用的', 1, 1, 1, 1, 0, '{"app":{"icon":"/static/app.png","index":"","url":"http://www.baidu.com"},"modal":{"type":"iframe","size":"middle","isShow":false,"zIndex":600,"enableResize":["min","max","reset","close"]},"taskBar":{"isPinned":false}}', '2017-11-14 02:59:40', '2017-11-14 03:00:38');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `platform_apps`
+--
+ALTER TABLE `platform_apps`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `platform_config`
+--
+ALTER TABLE `platform_config`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `platform_users`
+--
+ALTER TABLE `platform_users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `platform_user_apps`
+--
+ALTER TABLE `platform_user_apps`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 在导出的表使用AUTO_INCREMENT
+--
+
+--
+-- 使用表AUTO_INCREMENT `platform_apps`
+--
+ALTER TABLE `platform_apps`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '应用ID', AUTO_INCREMENT=12;
+--
+-- 使用表AUTO_INCREMENT `platform_config`
+--
+ALTER TABLE `platform_config`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '配置ID', AUTO_INCREMENT=2;
+--
+-- 使用表AUTO_INCREMENT `platform_users`
+--
+ALTER TABLE `platform_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户ID', AUTO_INCREMENT=2;
+--
+-- 使用表AUTO_INCREMENT `platform_user_apps`
+--
+ALTER TABLE `platform_user_apps`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -12,6 +12,12 @@
   npm run dev
 ```
 
+## 导出数据库到schema
+
+```bash
+sequelize-auto -o "./src/schema" -d x-webdesktop -h localhost -u root -p 3306 -e mysql
+```
+
 ## Build
 
 ```bash

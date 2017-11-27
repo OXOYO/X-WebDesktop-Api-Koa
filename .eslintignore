@@ -1,0 +1,4 @@
+build/*.js
+assets/*.js
+src/schema/*.js
+src/sql/*.sql
