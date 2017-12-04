@@ -7,15 +7,23 @@
 ## Start
 
 ```bash
+  // 1.Clone repository;
   git clone
+
+  // 2.Install packages;
   npm i
+
+  // 3.Import the "./src/x-webdesktop.sql" file into the database;
+
+  // 4.Start
   npm run dev
 ```
 
-## 导出数据库到schema
+## Develop
 
 ```bash
-sequelize-auto -o "./src/schema" -d x-webdesktop -h localhost -u root -p 3306 -e mysql
+  // Export the database to schema
+  sequelize-auto -o "./src/schema" -d x-webdesktop -h localhost -u root -p 3306 -e mysql
 ```
 
 ## Build
