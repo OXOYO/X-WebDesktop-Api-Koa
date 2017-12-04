@@ -99,7 +99,7 @@ CREATE TABLE `platform_users` (
 --
 
 INSERT INTO `platform_users` (`id`, `account`, `password`, `name`, `type`, `status`, `create_time`, `update_time`) VALUES
-(1, 'admin', '', '管理员', 0, 1, '2017-07-20 09:18:04', '2017-11-16 09:26:58');
+(1, 'admin', 'ED5wLgc3Mnw=', '管理员', 0, 1, '2017-07-20 09:18:04', '2017-11-16 09:26:58');
 
 -- --------------------------------------------------------
 
