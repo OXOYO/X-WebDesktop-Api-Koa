@@ -13,7 +13,7 @@
   // 2.Install packages;
   npm i
 
-  // 3.Import the "./src/x-webdesktop.sql" file into the database;
+  // 3.Import the "./src/sql/x-webdesktop.sql" file into the database;
 
   // 4.Start
   npm run dev
