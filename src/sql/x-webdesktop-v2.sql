@@ -17,10 +17,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `x-webdesktop`
+-- Database: `x-webdesktop-v2`
 --
-CREATE DATABASE IF NOT EXISTS `x-webdesktop` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `x-webdesktop`;
+CREATE DATABASE IF NOT EXISTS `x-webdesktop-v2` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `x-webdesktop-v2`;
 
 -- --------------------------------------------------------
 

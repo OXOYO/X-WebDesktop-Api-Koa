@@ -16,11 +16,12 @@ export const DB = {
   port: 3306,
   username: 'root',
   password: '',
-  database: 'x-webdesktop'
+  database: 'x-webdesktop-v2'
 }
 
 export const Api = {
-  prefix: '/api'
+  prefix: '/api',
+  version: 'v2.0.0'
 }
 
 // cookie相关配置

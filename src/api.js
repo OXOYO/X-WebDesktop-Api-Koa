@@ -11,7 +11,8 @@ import { Api as ApiConfig } from './config'
 import routers from './routers'
 // TODO 鉴权、TOKEN
 export default function api () {
-  let router = new Router({ prefix: ApiConfig.prefix })
+  let prefix = [ApiConfig.prefix, ApiConfig.version].join('/')
+  let router = new Router({prefix: prefix})
   Object.keys(routers).forEach(name => routers[name](router))
   return compose([
     router.routes(),
