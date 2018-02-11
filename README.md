@@ -1,8 +1,10 @@
 # X-WebDesktop-Api-Koa
 
+Version: 2.0.0 【开发中...】
+
 基于 Koa 的 WebDesktop Api 服务
 
-前端：[X-WebDesktop-Vue](https://github.com/OXOYO/X-WebDesktop-Vue)
+前端：[X-Desktop-Vue 2.0.0](https://github.com/OXOYO/X-WebDesktop-Vue/tree/master)
 
 ## Start
 
