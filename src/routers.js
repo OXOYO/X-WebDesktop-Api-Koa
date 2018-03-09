@@ -14,14 +14,12 @@ const routersObj = {}
 // 解析apps路由
 let apps = requireDirectory(module, './apps')
 for (let key in apps) {
-  let routers = apps[key]['routers']
+  let routers = apps[key]['Routers']
   routersObj[key] = routers.default
 }
 // 解析平台路由
-let platform = requireDirectory(module, './platform/routers')
-for (let key in platform) {
-  let routers = platform[key]
-  routersObj[key] = routers.default
-}
+// let platform = requireDirectory(module, './platform/Routers')
+let platform = require('./platform/Routers')
+routersObj['Platform'] = platform.default
 
 export default routersObj
