@@ -7,12 +7,15 @@
 import Sequelize from 'sequelize'
 import { DB as dbConfig } from './config'
 
+// 判断环境
+let dbType = process.env.NODE_ENV === 'development' ? 'development' : 'heroku'
+
 const db = new Sequelize(
-  dbConfig.database,
-  dbConfig.username,
-  dbConfig.password,
+  dbConfig[dbType].database,
+  dbConfig[dbType].username,
+  dbConfig[dbType].password,
   {
-    host: dbConfig.host,
+    host: dbConfig[dbType].host,
     dialect: 'mysql',
     dialectOptions: {
       charset: 'utf8'

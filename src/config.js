@@ -12,11 +12,21 @@ export const System = {
 }
 
 export const DB = {
-  host: 'localhost',
-  port: 3306,
-  username: 'root',
-  password: '',
-  database: 'x-webdesktop-v2'
+  development: {
+    host: 'localhost',
+    port: 3306,
+    username: 'root',
+    password: '',
+    database: 'x-webdesktop-v2'
+  },
+  // heroku上数据库配置
+  heroku: {
+    host: 'a07yd3a6okcidwap.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    port: 3306,
+    username: 'vuc6l55k1pqa7xn2',
+    password: 'xt77i1x5fn5br18g',
+    database: 'zaysac01ah85qxbg'
+  }
 }
 
 export const Api = {
