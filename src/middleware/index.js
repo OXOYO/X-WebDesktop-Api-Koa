@@ -28,7 +28,7 @@ export default function middleware (app) {
         let hostArr = [
           'localhost',
           '127.0.0.1',
-          'oxoyo.github.io',
+          'oxoyo.github.io'
         ]
         let host = request.header.origin
         let isIncludes = false
