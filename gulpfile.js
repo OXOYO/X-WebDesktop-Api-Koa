@@ -55,7 +55,7 @@ gulp.task('nodemon', () => {
     script: config.server.script,
     ext: 'js',
     env: {
-      'NODE_ENV': 'development'
+      'NODE_ENV': process.env.NODE_ENV
     },
     tasks: (changedFiles) => {
       lintFiles(changedFiles)
