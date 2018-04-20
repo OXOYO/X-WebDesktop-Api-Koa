@@ -12,7 +12,7 @@ export const System = {
 }
 
 export const DB = {
-  development: {
+  localhost: {
     host: 'localhost',
     port: 3306,
     username: 'root',
