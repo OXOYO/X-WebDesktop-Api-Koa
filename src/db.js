@@ -9,7 +9,8 @@ import { DB as dbConfig } from './config'
 
 // 判断环境
 let dbType = process.env.NODE_ENV === 'development' ? 'development' : 'heroku'
-
+console.log('dbType', dbType)
+dbType = 'heroku'
 const db = new Sequelize(
   dbConfig[dbType].database,
   dbConfig[dbType].username,
