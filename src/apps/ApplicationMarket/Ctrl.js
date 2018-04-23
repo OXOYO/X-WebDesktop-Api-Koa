@@ -8,6 +8,31 @@ const path = require('path')
 const multer = require('koa-multer')
 
 export default {
+  getCategoryList: async (ctx, next) => {
+    await next()
+    let reqQuery = ctx.query
+    let res
+    // 查询结果
+    res = await Model.getCategoryList(reqQuery)
+    // 处理结果
+    if (res) {
+      res = {
+        status: 200,
+        msg: '查询应用分类列表成功！',
+        data: {
+          count: res.count,
+          list: res.rows
+        }
+      }
+    } else {
+      res = {
+        status: 5000,
+        msg: '查询失败！',
+        data: res
+      }
+    }
+    ctx.body = res || {}
+  },
   getApplicationList: async (ctx, next) => {
     await next()
     // TODO 处理参数

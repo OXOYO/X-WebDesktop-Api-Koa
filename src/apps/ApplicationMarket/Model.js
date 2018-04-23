@@ -5,20 +5,46 @@
 import db from '../../db'
 
 const appsModel = '../../schema/platform_apps'
+const appsCategoryModel = '../../schema/platform_apps_category'
 const userAppsModel = '../../schema/platform_user_apps'
 const appsSchema = db.import(appsModel)
+const appsCategorySchema = db.import(appsCategoryModel)
 const userAppsSchema = db.import(userAppsModel)
 
 export default {
+  getCategoryList: async function (data, userInfo) {
+    let options = {}
+    // 拼装where条件
+    let whereObj = {}
+    if (data.hasOwnProperty('parent')) {
+      whereObj['parent'] = data.parent
+    }
+    // 处理options
+    if ((Object.keys(whereObj)).length) {
+      options['where'] = whereObj
+    }
+    // 处理排序
+    options['order'] = [
+      ['id', 'ASC']
+    ]
+    // 打印日志
+    options['logging'] = true
+    return await appsCategorySchema.findAndCountAll(options)
+  },
   // 应用列表
   getApplicationList: async function (data, userInfo) {
     let options = {}
     // 拼装where条件
     let whereObj = {}
-    if (data.filterType && data.keywords) {
+    if (data.hasOwnProperty('filterType') && data.hasOwnProperty('keywords')) {
       whereObj[data.filterType] = {
         $like: '%' + data.keywords + '%'
       }
+    }
+    // 处理应用分类
+    // FIXME category 1 为全部应用
+    if (data.hasOwnProperty('category') && parseInt(data.category) !== 1) {
+      whereObj['category'] = data.category
     }
     // 普通用户返回部分应用，管理员返回全部应用
     if (userInfo && userInfo.hasOwnProperty('type')) {

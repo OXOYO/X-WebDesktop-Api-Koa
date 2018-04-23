@@ -9,7 +9,8 @@ const namespace = '/ApplicationMarket/'
 
 export default (router) => {
   router
-    .get(namespace + 'list', auth.verifyToken, Ctrl.getApplicationList)
+    .get(namespace + 'category/list', auth.verifyToken, Ctrl.getCategoryList)
+    .get(namespace + 'application/list', auth.verifyToken, Ctrl.getApplicationList)
     .post(namespace + 'edit', auth.verifyToken, auth.verifyAdmin, Ctrl.doEditApp)
     .post(namespace + 'add', auth.verifyToken, auth.verifyAdmin, Ctrl.doAddApp)
     // .post(namespace + 'update', auth.verifyToken, Ctrl.doUpdateApp)
