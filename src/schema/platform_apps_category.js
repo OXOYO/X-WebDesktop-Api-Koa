@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('platform_apps', {
+  return sequelize.define('platform_apps_category', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -20,24 +20,13 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(500),
       allowNull: false
     },
-    type: {
-      type: DataTypes.INTEGER(1),
-      allowNull: false
+    parent: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      defaultValue: '0'
     },
-    user_type: {
-      type: DataTypes.INTEGER(1),
-      allowNull: false
-    },
-    publish: {
-      type: DataTypes.INTEGER(1),
-      allowNull: false
-    },
-    category: {
-      type: DataTypes.STRING(200),
-      allowNull: false
-    },
-    config: {
-      type: DataTypes.STRING(500),
+    icon: {
+      type: DataTypes.STRING(32),
       allowNull: false
     },
     create_time: {
@@ -49,6 +38,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   }, {
-    tableName: 'platform_apps'
+    tableName: 'platform_apps_category'
   });
 };

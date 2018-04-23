@@ -36,6 +36,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(1),
       allowNull: false
     },
+    app_category: {
+      type: DataTypes.STRING(200),
+      allowNull: false
+    },
     user_type: {
       type: DataTypes.INTEGER(1),
       allowNull: false
