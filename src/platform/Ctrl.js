@@ -226,6 +226,74 @@ export default {
       }
 
       ctx.body = res || {}
+    },
+    doInstallApp: async (ctx, next) => {
+      await next()
+      let reqBody = ctx.request.body
+      let userInfo = ctx.userInfo
+      let res
+      if (reqBody && userInfo && userInfo.userId) {
+        // 1.查询是否已经安装过
+        let isInstalled = await Model.user.getApplicationByUserId({
+          app_id: reqBody['id'],
+          user_id: userInfo['userId'],
+          private: 0
+        })
+        if (isInstalled) {
+          res = {
+            status: 5000,
+            msg: '应用已经安装过，请勿重复安装！',
+            data: {}
+          }
+        } else {
+          // 2.1查找应用
+          let appInfo = await Model.user.getApplicationByAppId({
+            id: reqBody['id']
+          })
+          let timeNow = new Date()
+          let installData = {
+            user_id: userInfo.userId,
+            app_id: appInfo.id,
+            app_name: appInfo.name,
+            app_title: appInfo.title,
+            app_description: appInfo.description,
+            app_type: appInfo.type,
+            app_publish: appInfo.publish,
+            app_category: appInfo.category,
+            user_type: appInfo.user_type,
+            status: 1,
+            private: 0,
+            config: appInfo.config,
+            install: appInfo.install,
+            uninstall: appInfo.uninstall,
+            create_time: timeNow,
+            update_time: timeNow
+          }
+          // 执行安装
+          res = await Model.user.doInstallApp(installData)
+          // 处理结果
+          if (res) {
+            res = {
+              status: 200,
+              msg: '安装成功！',
+              data: res
+            }
+          } else {
+            res = {
+              status: 5000,
+              msg: '安装失败！',
+              data: res
+            }
+          }
+        }
+      } else {
+        res = {
+          status: 5001,
+          msg: '安装失败，上送参数有误！',
+          data: {}
+        }
+      }
+      ctx.body = res || {}
     }
   },
   components: {

@@ -13,6 +13,9 @@ const usersSchema = db.import(usersModel)
 const userAppsModel = '../schema/platform_user_apps'
 const userAppsSchema = db.import(userAppsModel)
 
+const appsModel = '../schema/platform_apps'
+const appsSchema = db.import(appsModel)
+
 export default {
   user: {
     // 系统登录
@@ -82,6 +85,29 @@ export default {
           user_id: data['user_id'],
           app_id: data['app_id']
         },
+        logging: true
+      })
+    },
+    getApplicationByUserId: async function (data) {
+      return await userAppsSchema.findOne({
+        where: {
+          app_id: data['app_id'],
+          user_id: data['user_id']
+        },
+        logging: true
+      })
+    },
+    getApplicationByAppId: async function (data) {
+      return await appsSchema.findOne({
+        where: {
+          id: data['id']
+        },
+        logging: true
+      })
+    },
+    // 安装应用
+    doInstallApp: async function (data) {
+      return await userAppsSchema.create(data, {
         logging: true
       })
     }
