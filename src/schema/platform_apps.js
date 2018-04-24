@@ -40,6 +40,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(500),
       allowNull: false
     },
+    install: {
+      type: DataTypes.STRING(500),
+      allowNull: false
+    },
+    uninstall: {
+      type: DataTypes.STRING(500),
+      allowNull: false
+    },
     create_time: {
       type: DataTypes.DATE,
       allowNull: false
