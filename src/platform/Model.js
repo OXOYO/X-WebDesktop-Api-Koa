@@ -110,6 +110,17 @@ export default {
       return await userAppsSchema.create(data, {
         logging: true
       })
+    },
+    // 卸载应用
+    doUninstallApp: async function (data) {
+      return await userAppsSchema.destroy({
+        where: {
+          id: data['id'],
+          user_id: data['user_id'],
+          app_id: data['app_id']
+        },
+        logging: true
+      })
     }
   }
 }

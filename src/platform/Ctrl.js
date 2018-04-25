@@ -180,7 +180,7 @@ export default {
         // 1.先查找用户应用
         let appDetail = await Model.user.getApplicationDetailByUserId({
           user_id: userInfo.userId,
-          app_id: reqBody['appId']
+          app_id: reqBody['app_id']
         })
         // 2.处理config
         if (appDetail) {
@@ -190,7 +190,7 @@ export default {
           let timeNow = new Date()
           let data = {
             user_id: userInfo.userId,
-            app_id: reqBody['appId'],
+            app_id: reqBody['app_id'],
             config: JSON.stringify(appConfig),
             update_time: timeNow
           }
@@ -264,8 +264,6 @@ export default {
             status: 1,
             private: 0,
             config: appInfo.config,
-            install: appInfo.install,
-            uninstall: appInfo.uninstall,
             create_time: timeNow,
             update_time: timeNow
           }
@@ -290,6 +288,42 @@ export default {
         res = {
           status: 5001,
           msg: '安装失败，上送参数有误！',
+          data: {}
+        }
+      }
+      ctx.body = res || {}
+    },
+    doUninstallApp: async (ctx, next) => {
+      await next()
+      let reqBody = ctx.request.body
+      let userInfo = ctx.userInfo
+      let res
+      if (reqBody && reqBody.user_id && parseInt(reqBody.user_id) === userInfo.userId) {
+        let data = {
+          id: reqBody['id'],
+          user_id: reqBody['user_id'],
+          app_id: reqBody['app_id']
+        }
+        // 查询结果
+        res = await Model.user.doUninstallApp(data)
+        // 处理结果
+        if (res) {
+          res = {
+            status: 200,
+            msg: '卸载成功！',
+            data: res
+          }
+        } else {
+          res = {
+            status: 5000,
+            msg: '卸载失败！',
+            data: res
+          }
+        }
+      } else {
+        res = {
+          status: 5001,
+          msg: '卸载失败，上送参数有误！',
           data: {}
         }
       }

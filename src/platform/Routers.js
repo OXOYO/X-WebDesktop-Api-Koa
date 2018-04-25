@@ -16,6 +16,6 @@ export default (router) => {
     .get(namespace + 'user/application/list', auth.verifyToken, Ctrl.user.getApplicationListByUserId)
     .post(namespace + 'user/application/pinned/update', auth.verifyToken, Ctrl.user.doAppPinnedUpdate)
     .post(namespace + 'user/application/install', auth.verifyToken, Ctrl.user.doInstallApp)
-    // .post(namespace + 'user/application/install', auth.verifyToken, Ctrl.user.doUninstallApp)
+    .post(namespace + 'user/application/uninstall', auth.verifyToken, Ctrl.user.doUninstallApp)
     .get(namespace + 'components/wallpaper/bing', Ctrl.components.getBingWallpaper)
 }

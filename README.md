@@ -25,7 +25,7 @@ Version: 2.0.0 【开发中...】
 
 ```bash
   // Export the database to schema
-  sequelize-auto -o "./src/schema" -d x-webdesktop -h localhost -u root -p 3306 -e mysql
+  sequelize-auto -o "./src/schema" -d x-webdesktop-v2 -h localhost -u root -p 3306 -e mysql
 ```
 
 ## Build

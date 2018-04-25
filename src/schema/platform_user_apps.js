@@ -53,15 +53,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     config: {
-      type: DataTypes.STRING(500),
-      allowNull: false
-    },
-    install: {
-      type: DataTypes.STRING(500),
-      allowNull: false
-    },
-    uninstall: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.STRING(1000),
       allowNull: false
     },
     create_time: {
