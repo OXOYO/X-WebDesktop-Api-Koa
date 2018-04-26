@@ -52,4 +52,3 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'platform_apps'
   });
 };
-

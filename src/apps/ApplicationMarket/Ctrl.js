@@ -238,7 +238,7 @@ export default {
       if (isInstalled) {
         res = {
           status: 5000,
-          msg: '应用已经安装过，请勿重复安装！',
+          msg: '该应用已安装，请勿重复安装！',
           data: {}
         }
       } else {
