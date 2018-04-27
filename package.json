@@ -4,7 +4,7 @@
   "description": "The WebDesktop Api service based on Koa",
   "author": "OXOYO",
   "scripts": {
-    "start": "set NODE_ENV=production&& gulp",
+    "start": "set NODE_ENV=production&& gulp nodemon",
     "dev": "set NODE_ENV=development&& gulp",
     "build": "babel src -d dist",
     "production": "node dist/app.js",
@@ -57,7 +57,7 @@
     "nodemon": "^1.11.0"
   },
   "engines": {
-    "node": "= 8.2.1",
+    "node": "7.8.0 - 8.11.1",
     "npm": ">= 4.2.0"
   }
 }
