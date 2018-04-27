@@ -10,7 +10,7 @@ import helmet from 'koa-helmet'
 import logger from 'koa-logger'
 import cors from 'koa-cors'
 import bodyParser from 'koa-bodyparser'
-// import session from 'koa-generic-session'
+import session from 'koa-generic-session'
 import KoaStatic from 'koa-static'
 
 import pipe from './pipe'
@@ -60,7 +60,7 @@ export default function middleware (app) {
       formLimit: '10mb',
       textLimit: '20mb'
     })),
-    // convert(session(app)),
+    convert(session(app)),
     pipe()
   ])
 }
