@@ -27,14 +27,21 @@ const lintFiles = (files) => {
     gulpEslint.result(results => {
       // Called for each ESLint result.
       console.log(`ESLint result: ${results.filePath}`)
-      console.log(`# Messages: ${results.messages.length}`)
-      console.log(`# Warnings: ${results.warningCount}`)
-      console.log(`# Errors: ${results.errorCount}`)
+      if (results.messages.length) {
+        console.log(`# Messages: ${results.messages.length}`)
+      }
+      if (results.warningCount) {
+        console.log(`# Warnings: ${results.warningCount}`)
+      }
+      if (results.errorCount) {
+        console.log(`# Errors: ${results.errorCount}`)
+      }
     })
   ).pipe(
     gulpEslint.results(results => {
       // Called once for all ESLint results.
       console.log(`Total Results: ${results.length}`)
+      console.log(`Total Messages: ${results.messages.length}`)
       console.log(`Total Warnings: ${results.warningCount}`)
       console.log(`Total Errors: ${results.errorCount}`)
     })
