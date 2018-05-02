@@ -56,17 +56,35 @@ export default {
       })
     },
     // 应用列表
-    getApplicationListByUserId: async function (userId) {
-      return await userAppsSchema.findAndCountAll({
-        where: {
-          user_id: userId,
-          status: 1
-        },
-        order: [
-          ['id', 'ASC']
-        ],
-        logging: true
-      })
+    getApplicationListByUserId: async function (data, userInfo) {
+      let options = {}
+      // 拼装where条件
+      let whereObj = {}
+      if (data.hasOwnProperty('filterType') && data.hasOwnProperty('keywords')) {
+        whereObj[data.filterType] = {
+          $like: '%' + data.keywords + '%'
+        }
+      }
+      // 处理应用分类
+      // FIXME category 1 为全部应用
+      if (data.hasOwnProperty('app_category') && parseInt(data.app_category) !== 1) {
+        whereObj['app_category'] = data.app_category
+      }
+      // 当前用户
+      whereObj['user_id'] = userInfo.userId
+      // 状态 0 停用 1 启用
+      whereObj['status'] = 1
+      // 处理options
+      if ((Object.keys(whereObj)).length) {
+        options['where'] = whereObj
+      }
+      // 处理排序
+      options['order'] = [
+        ['id', 'ASC']
+      ]
+      // 打印日志
+      options['logging'] = true
+      return await userAppsSchema.findAndCountAll(options)
     },
     // 获取用户应用详情
     getApplicationDetailByUserId: async function (data) {

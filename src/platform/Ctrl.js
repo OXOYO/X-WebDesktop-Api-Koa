@@ -138,13 +138,13 @@ export default {
     },
     getApplicationListByUserId: async (ctx, next) => {
       await next()
-      // TODO 处理参数
-      // let reqQuery = ctx.query
+      // 处理参数
+      let reqQuery = ctx.query
       let userInfo = ctx.userInfo
       let res
       if (userInfo && userInfo.userId) {
         // 查询结果
-        res = await Model.user.getApplicationListByUserId(userInfo.userId)
+        res = await Model.user.getApplicationListByUserId(reqQuery, userInfo)
         // 处理结果
         if (res) {
           res = {
