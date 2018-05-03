@@ -1,5 +1,4 @@
 import Koa from 'koa'
-// import jwt from 'koa-jwt'
 import { System as SystemConfig } from './config'
 import middleware from './middleware'
 import utils from './utils'

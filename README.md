@@ -14,7 +14,7 @@ Version: 2.0.0 【开发中...】
 
 ## Documentation
 
-[中文文档 (2.0.0)](https://github.com/OXOYO/X-WebDesktop-Vue/blob/master/document/md/guide_cn_v2.0.0.md)
+[中文文档 (2.0.0)](https://github.com/OXOYO/X-WebDesktop-Vue/blob/master/document/README.md)
 
 ## Start
 
