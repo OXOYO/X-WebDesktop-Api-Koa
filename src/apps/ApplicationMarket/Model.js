@@ -54,8 +54,8 @@ export default {
         // 并且是已经发布的应用
         whereObj['publish'] = 1
       } else {
-        // 处理应用类别
-        let typeInArr = data['type'] || []
+        // 处理应用类别，默认只查普通应用
+        let typeInArr = data['type'] || [1]
         if (typeInArr.length) {
           whereObj['type'] = {
             $in: typeInArr

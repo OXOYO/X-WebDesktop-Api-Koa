@@ -304,14 +304,35 @@ export default {
           user_id: reqBody['user_id'],
           app_id: reqBody['app_id']
         }
-        // 查询结果
-        res = await Model.user.doUninstallApp(data)
-        // 处理结果
-        if (res) {
-          res = {
-            status: 200,
-            msg: '卸载成功！',
-            data: res
+        // 查询该应用信息，判断是否支持卸载
+        let appInfo = await Model.user.getApplicationByAppId({
+          id: data['app_id']
+        })
+        if (appInfo) {
+          // 0 默认应用 1 普通应用
+          if (appInfo.type === 0) {
+            res = {
+              status: 5000,
+              msg: '卸载失败！默认应用禁止卸载！',
+              data: appInfo
+            }
+          } else {
+            // 执行卸载
+            res = await Model.user.doUninstallApp(data)
+            // 处理结果
+            if (res) {
+              res = {
+                status: 200,
+                msg: '卸载成功！',
+                data: res
+              }
+            } else {
+              res = {
+                status: 5000,
+                msg: '卸载失败！',
+                data: res
+              }
+            }
           }
         } else {
           res = {
