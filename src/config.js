@@ -24,8 +24,8 @@ export const DB = {
     host: 'a07yd3a6okcidwap.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
     port: 3306,
     username: 'vuc6l55k1pqa7xn2',
-    password: 'xt77i1x5fn5br18g',
-    database: 'zav87tg51xf5dh6g'
+    password: 'zav87tg51xf5dh6g',
+    database: 'zaysac01ah85qxbg'
   }
 }
 
