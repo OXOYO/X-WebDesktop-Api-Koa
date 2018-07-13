@@ -25,7 +25,7 @@ export const DB = {
     port: 3306,
     username: 'vuc6l55k1pqa7xn2',
     password: 'xt77i1x5fn5br18g',
-    database: 'zaysac01ah85qxbg'
+    database: 'zav87tg51xf5dh6g'
   }
 }
 
