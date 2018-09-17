@@ -31,7 +31,7 @@ export const DB = {
 
 export const Api = {
   prefix: '/api',
-  version: 'v2.0.0'
+  version: 'v3.0.0'
 }
 
 // cookie相关配置
