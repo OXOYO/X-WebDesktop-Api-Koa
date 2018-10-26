@@ -97,7 +97,7 @@ exports.default = {
             case 2:
               // TODO 处理参数
               reqQuery = ctx.query;
-              userInfo = ctx.userInfo;
+              userInfo = ctx.state.userInfo;
               res = void 0;
               // 查询结果
 
@@ -322,7 +322,7 @@ exports.default = {
 
             case 2:
               reqBody = ctx.request.body;
-              userInfo = ctx.userInfo;
+              userInfo = ctx.state.userInfo;
               res = void 0;
 
               if (!(reqBody && reqBody.userId && parseInt(reqBody.userId) === userInfo.userId)) {
@@ -397,7 +397,7 @@ exports.default = {
 
             case 2:
               reqBody = ctx.request.body;
-              userInfo = ctx.userInfo;
+              userInfo = ctx.state.userInfo;
               res = void 0;
 
               if (!(reqBody && reqBody.userId && parseInt(reqBody.userId) === userInfo.userId)) {
@@ -468,7 +468,7 @@ exports.default = {
 
             case 2:
               reqBody = ctx.request.body;
-              userInfo = ctx.userInfo;
+              userInfo = ctx.state.userInfo;
               res = void 0;
 
               if (!(reqBody && userInfo && userInfo.userId)) {

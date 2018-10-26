@@ -24,6 +24,7 @@ var formatRes = function formatRes(ctx, ms) {
   var tmpArr = [];
 
   tmpArr.push('\n' + '********** RESPONSE START **********' + '\n\n');
+  tmpArr.push('  request userInfo: ' + (0, _stringify2.default)(ctx.state.userInfo) + '\n\n');
   tmpArr.push(formatReq(ctx.request, ms) + '\n');
   tmpArr.push('  response status: ' + ctx.status + '\n');
   tmpArr.push('  response body: ' + '\n  ' + (0, _stringify2.default)(ctx.body) + '\n\n');
@@ -37,6 +38,7 @@ var formatError = function formatError(ctx, err, ms) {
   var tmpArr = [];
 
   tmpArr.push('\n' + '********** ERROR START **********' + '\n\n');
+  tmpArr.push('  request userInfo: ' + (0, _stringify2.default)(ctx.state.userInfo) + '\n\n');
   tmpArr.push(formatReq(ctx.request, ms));
   tmpArr.push('  err name: ' + err.name + '\n');
   tmpArr.push('  err message: ' + err.message + '\n');
@@ -63,6 +65,23 @@ var formatReq = function formatReq(req, ms) {
   return tmpArr.join('');
 };
 
+// 处理日志排除
+var handleLogExclude = function handleLogExclude(ctx) {
+  var originalUrl = ctx.request.originalUrl || '';
+  // 是否排除标识
+  var isExclude = false;
+  if (!originalUrl || !_config.logExclude.length) {
+    return false;
+  }
+  for (var i = 0, len = _config.logExclude.length; i < len; i++) {
+    if (originalUrl.includes(_config.logExclude[i])) {
+      isExclude = true;
+      break;
+    }
+  }
+  return isExclude;
+};
+
 // 加载配置文件
 (0, _log4js.configure)(_config.Log);
 
@@ -74,7 +93,7 @@ var log = {
     }
   },
   response: function response(ctx, ms) {
-    if (ctx) {
+    if (ctx && !handleLogExclude(ctx)) {
       (0, _log4js.getLogger)('result').info(formatRes(ctx, ms));
     }
   }

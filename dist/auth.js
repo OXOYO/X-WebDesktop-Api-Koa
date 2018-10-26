@@ -112,7 +112,7 @@ exports.default = {
               }
 
               // token有效，传递给上下文
-              ctx['userInfo'] = decoded;
+              ctx.state['userInfo'] = decoded;
               _context.next = 10;
               return next();
 
@@ -149,7 +149,7 @@ exports.default = {
           switch (_context2.prev = _context2.next) {
             case 0:
               // TODO 鉴权用户级别
-              userInfo = ctx.userInfo;
+              userInfo = ctx.state.userInfo;
 
               if (!userInfo) {
                 _context2.next = 13;

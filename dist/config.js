@@ -36,7 +36,7 @@ var DB = exports.DB = {
 
 var Api = exports.Api = {
   prefix: '/api',
-  version: 'v3.0.0'
+  version: 'v3.0.1'
 
   // cookie相关配置
 };var cookieConfig = exports.cookieConfig = {
@@ -117,4 +117,6 @@ var Api = exports.Api = {
       level: 'info'
     }
   }
-};
+
+  // 日志记录排除接口配置
+};var logExclude = exports.logExclude = ['/SystemLog/list'];

@@ -54,37 +54,34 @@ exports.default = {
                 res = void 0;
 
                 if (!(reqBody && reqBody.account && reqBody.password)) {
-                  _context.next = 24;
+                  _context.next = 22;
                   break;
                 }
 
                 // 执行平台内用户查询
                 // 加密密码
                 password = _utils2.default.des.encrypt(_config.accountConfig.key, reqBody.password, 0);
-
-                console.log('password', password);
-                _context.next = 9;
+                _context.next = 8;
                 return _Model2.default.user.doSignIn({
                   account: reqBody.account,
                   password: password
                 });
 
-              case 9:
+              case 8:
                 res = _context.sent;
-
-                console.log('xxx', res);
                 data = {
                   userInfo: res
                   // 处理结果
                 };
 
                 if (!res) {
-                  _context.next = 18;
+                  _context.next = 16;
                   break;
                 }
 
                 userInfo = {
                   account: res.account,
+                  name: res.name,
                   userId: res.id,
                   type: res.type,
                   status: res.status
@@ -107,14 +104,14 @@ exports.default = {
                     data: data
                   };
                 }
-                _context.next = 22;
+                _context.next = 20;
                 break;
 
-              case 18:
-                _context.next = 20;
+              case 16:
+                _context.next = 18;
                 return _Model2.default.user.getOneAdmin();
 
-              case 20:
+              case 18:
                 adminInfo = _context.sent;
 
                 res = {
@@ -123,21 +120,21 @@ exports.default = {
                   data: data
                 };
 
-              case 22:
-                _context.next = 25;
+              case 20:
+                _context.next = 23;
                 break;
 
-              case 24:
+              case 22:
                 res = {
                   status: 5001,
                   msg: '登录失败，上送参数有误！',
                   data: {}
                 };
 
-              case 25:
+              case 23:
                 ctx.body = res || {};
 
-              case 26:
+              case 24:
               case 'end':
                 return _context.stop();
             }
@@ -162,7 +159,7 @@ exports.default = {
 
               case 2:
                 // TODO 处理参数
-                userInfo = ctx.userInfo;
+                userInfo = ctx.state.userInfo;
                 res = void 0;
 
                 if (!(userInfo && userInfo.userId)) {
@@ -295,7 +292,7 @@ exports.default = {
               case 2:
                 // 处理参数
                 reqQuery = ctx.query;
-                userInfo = ctx.userInfo;
+                userInfo = ctx.state.userInfo;
                 res = void 0;
 
                 if (!(userInfo && userInfo.userId)) {
@@ -363,7 +360,7 @@ exports.default = {
 
               case 2:
                 reqBody = ctx.request.body;
-                userInfo = ctx.userInfo;
+                userInfo = ctx.state.userInfo;
                 res = void 0;
 
                 if (!(userInfo && userInfo.userId)) {
@@ -466,7 +463,7 @@ exports.default = {
 
               case 2:
                 reqBody = ctx.request.body;
-                userInfo = ctx.userInfo;
+                userInfo = ctx.state.userInfo;
                 res = void 0;
 
                 if (!(reqBody && userInfo && userInfo.userId)) {
@@ -582,7 +579,7 @@ exports.default = {
 
               case 2:
                 reqBody = ctx.request.body;
-                userInfo = ctx.userInfo;
+                userInfo = ctx.state.userInfo;
                 res = void 0;
 
                 if (!(reqBody && reqBody.user_id && parseInt(reqBody.user_id) === userInfo.userId)) {
