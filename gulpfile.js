@@ -41,9 +41,15 @@ const lintFiles = (files) => {
     gulpEslint.results(results => {
       // Called once for all ESLint results.
       console.log(`Total Results: ${results.length}`)
-      console.log(`Total Messages: ${results.messages.length}`)
-      console.log(`Total Warnings: ${results.warningCount}`)
-      console.log(`Total Errors: ${results.errorCount}`)
+      if (results.messages) {
+        console.log(`Total Messages: ${results.messages.length}`)
+      }
+      if (results.warningCount) {
+        console.log(`Total Warnings: ${results.warningCount}`)
+      }
+      if (results.errorCount) {
+        console.log(`Total Errors: ${results.errorCount}`)
+      }
     })
   )
 }
