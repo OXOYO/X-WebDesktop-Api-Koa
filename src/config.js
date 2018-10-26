@@ -31,7 +31,7 @@ export const DB = {
 
 export const Api = {
   prefix: '/api',
-  version: 'v3.0.0'
+  version: 'v3.0.1'
 }
 
 // cookie相关配置
@@ -117,3 +117,8 @@ export const Log = {
     }
   }
 }
+
+// 日志记录排除接口配置
+export const logExclude = [
+  '/SystemLog/list'
+]

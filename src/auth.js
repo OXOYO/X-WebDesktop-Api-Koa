@@ -80,7 +80,7 @@ export default {
     // 判断校验结果，分别处理
     if (verifyRes.flag) {
       // token有效，传递给上下文
-      ctx['userInfo'] = decoded
+      ctx.state['userInfo'] = decoded
       await next()
       return
     } else {
@@ -92,7 +92,7 @@ export default {
   // 用户鉴权：管理员
   verifyAdmin: async function (ctx, next) {
     // TODO 鉴权用户级别
-    let userInfo = ctx.userInfo
+    let userInfo = ctx.state.userInfo
     if (userInfo) {
       if (userInfo.type === 0) {
         await next()

@@ -37,7 +37,7 @@ export default {
     await next()
     // TODO 处理参数
     let reqQuery = ctx.query
-    let userInfo = ctx.userInfo
+    let userInfo = ctx.state.userInfo
     let res
     // 查询结果
     res = await Model.getApplicationList(reqQuery, userInfo)
@@ -150,7 +150,7 @@ export default {
   doUpdateApp: async (ctx, next) => {
     await next()
     let reqBody = ctx.request.body
-    let userInfo = ctx.userInfo
+    let userInfo = ctx.state.userInfo
     let res
     if (reqBody && reqBody.userId && parseInt(reqBody.userId) === userInfo.userId) {
       let timeNow = new Date()
@@ -190,7 +190,7 @@ export default {
   doRemoveApp: async (ctx, next) => {
     await next()
     let reqBody = ctx.request.body
-    let userInfo = ctx.userInfo
+    let userInfo = ctx.state.userInfo
     let res
     if (reqBody && reqBody.userId && parseInt(reqBody.userId) === userInfo.userId) {
       let data = {
@@ -226,7 +226,7 @@ export default {
   doInstallApp: async (ctx, next) => {
     await next()
     let reqBody = ctx.request.body
-    let userInfo = ctx.userInfo
+    let userInfo = ctx.state.userInfo
     let res
     if (reqBody && userInfo && userInfo.userId) {
       // 1.查询是否已经安装过

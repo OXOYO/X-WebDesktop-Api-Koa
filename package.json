@@ -1,6 +1,6 @@
 {
   "name": "x-webdesktop-api",
-  "version": "2.0.0",
+  "version": "3.0.1",
   "description": "The WebDesktop Api service based on Koa",
   "author": "OXOYO",
   "scripts": {

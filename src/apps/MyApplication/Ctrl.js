@@ -12,7 +12,7 @@ export default {
     await next()
     // TODO 处理参数
     let reqQuery = ctx.query
-    let userInfo = ctx.userInfo
+    let userInfo = ctx.state.userInfo
     let res
     if (reqQuery && userInfo.userId) {
       // 查询结果
@@ -49,7 +49,7 @@ export default {
   doEditApp: async (ctx, next) => {
     await next()
     let reqBody = ctx.request.body
-    let userInfo = ctx.userInfo
+    let userInfo = ctx.state.userInfo
     let res
     if (reqBody && reqBody['user_id'] && parseInt(reqBody['user_id']) === userInfo.userId) {
       let timeNow = new Date()
@@ -85,7 +85,7 @@ export default {
   doAddApp: async (ctx, next) => {
     await next()
     let reqBody = ctx.request.body
-    let userInfo = ctx.userInfo
+    let userInfo = ctx.state.userInfo
     let res
     if (reqBody && userInfo.userId) {
       let timeNow = new Date()
@@ -126,7 +126,7 @@ export default {
   doUpdateApp: async (ctx, next) => {
     await next()
     let reqBody = ctx.request.body
-    let userInfo = ctx.userInfo
+    let userInfo = ctx.state.userInfo
     let res
     if (reqBody && reqBody.userId && parseInt(reqBody.userId) === userInfo.userId) {
       let timeNow = new Date()
@@ -165,7 +165,7 @@ export default {
   doRemoveApp: async (ctx, next) => {
     await next()
     let reqBody = ctx.request.body
-    let userInfo = ctx.userInfo
+    let userInfo = ctx.state.userInfo
     let res
     if (reqBody && reqBody.userId && parseInt(reqBody.userId) === userInfo.userId) {
       let data = {

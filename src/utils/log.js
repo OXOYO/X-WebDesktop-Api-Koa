@@ -3,13 +3,14 @@
  */
 
 import { configure, getLogger } from 'log4js'
-import { Log as LogConfig } from '../config'
+import { Log as LogConfig, logExclude } from '../config'
 
 // 格式化响应日志
 const formatRes = (ctx, ms) => {
   let tmpArr = []
 
   tmpArr.push('\n' + '********** RESPONSE START **********' + '\n\n')
+  tmpArr.push('  request userInfo: ' + JSON.stringify(ctx.state.userInfo) + '\n\n')
   tmpArr.push(formatReq(ctx.request, ms) + '\n')
   tmpArr.push('  response status: ' + ctx.status + '\n')
   tmpArr.push('  response body: ' + '\n  ' + JSON.stringify(ctx.body) + '\n\n')
@@ -23,6 +24,7 @@ const formatError = (ctx, err, ms) => {
   let tmpArr = []
 
   tmpArr.push('\n' + '********** ERROR START **********' + '\n\n')
+  tmpArr.push('  request userInfo: ' + JSON.stringify(ctx.state.userInfo) + '\n\n')
   tmpArr.push(formatReq(ctx.request, ms))
   tmpArr.push('  err name: ' + err.name + '\n')
   tmpArr.push('  err message: ' + err.message + '\n')
@@ -49,6 +51,23 @@ const formatReq = (req, ms) => {
   return tmpArr.join('')
 }
 
+// 处理日志排除
+const handleLogExclude = function (ctx) {
+  let originalUrl = ctx.request.originalUrl || ''
+  // 是否排除标识
+  let isExclude = false
+  if (!originalUrl || !logExclude.length) {
+    return false
+  }
+  for (let i = 0, len = logExclude.length; i < len; i++) {
+    if (originalUrl.includes(logExclude[i])) {
+      isExclude = true
+      break
+    }
+  }
+  return isExclude
+}
+
 // 加载配置文件
 configure(LogConfig)
 
@@ -60,7 +79,7 @@ export const log = {
     }
   },
   response: (ctx, ms) => {
-    if (ctx) {
+    if (ctx && !handleLogExclude(ctx)) {
       getLogger('result').info(formatRes(ctx, ms))
     }
   }

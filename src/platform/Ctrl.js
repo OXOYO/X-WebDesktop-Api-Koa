@@ -19,12 +19,10 @@ export default {
         // 执行平台内用户查询
         // 加密密码
         let password = utils.des.encrypt(accountConfig.key, reqBody.password, 0)
-        console.log('password', password)
         res = await Model.user.doSignIn({
           account: reqBody.account,
           password: password
         })
-        console.log('xxx', res)
         let data = {
           userInfo: res
         }
@@ -32,6 +30,7 @@ export default {
         if (res) {
           let userInfo = {
             account: res.account,
+            name: res.name,
             userId: res.id,
             type: res.type,
             status: res.status
@@ -75,7 +74,7 @@ export default {
     getBaseInfo: async (ctx, next) => {
       await next()
       // TODO 处理参数
-      let userInfo = ctx.userInfo
+      let userInfo = ctx.state.userInfo
       let res
       if (userInfo && userInfo.userId) {
         // 查询结果
@@ -140,7 +139,7 @@ export default {
       await next()
       // 处理参数
       let reqQuery = ctx.query
-      let userInfo = ctx.userInfo
+      let userInfo = ctx.state.userInfo
       let res
       if (userInfo && userInfo.userId) {
         // 查询结果
@@ -174,7 +173,7 @@ export default {
     doAppPinnedUpdate: async (ctx, next) => {
       await next()
       let reqBody = ctx.request.body
-      let userInfo = ctx.userInfo
+      let userInfo = ctx.state.userInfo
       let res
       if (userInfo && userInfo.userId) {
         // 1.先查找用户应用
@@ -230,7 +229,7 @@ export default {
     doInstallApp: async (ctx, next) => {
       await next()
       let reqBody = ctx.request.body
-      let userInfo = ctx.userInfo
+      let userInfo = ctx.state.userInfo
       let res
       if (reqBody && userInfo && userInfo.userId) {
         // 1.查询是否已经安装过
@@ -296,7 +295,7 @@ export default {
     doUninstallApp: async (ctx, next) => {
       await next()
       let reqBody = ctx.request.body
-      let userInfo = ctx.userInfo
+      let userInfo = ctx.state.userInfo
       let res
       if (reqBody && reqBody.user_id && parseInt(reqBody.user_id) === userInfo.userId) {
         let data = {
