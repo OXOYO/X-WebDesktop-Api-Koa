@@ -9,6 +9,8 @@ const env = process.env.NODE_ENV || 'development' // Current mode
 
 app.keys = [SystemConfig.sessionKey]
 
+app.proxy = true
+
 // 注册log
 app.use(async (ctx, next) => {
   let startTime = new Date()
