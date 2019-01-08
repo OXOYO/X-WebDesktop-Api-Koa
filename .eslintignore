@@ -1,4 +1,5 @@
 build/*.js
+dist/*
 assets/*.js
 src/schema/*.js
 src/sql/*.sql

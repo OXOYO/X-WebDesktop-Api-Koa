@@ -37,6 +37,8 @@ var env = process.env.NODE_ENV || 'development'; // Current mode
 
 app.keys = [_config.System.sessionKey];
 
+app.proxy = true;
+
 // 注册log
 app.use(function () {
   var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(ctx, next) {
