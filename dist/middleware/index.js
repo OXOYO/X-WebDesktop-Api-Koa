@@ -56,25 +56,7 @@ function middleware(app) {
   return (0, _koaCompose2.default)([(0, _koaLogger2.default)(), (0, _koaHelmet2.default)(), (0, _koaStatic2.default)('.'),
   // 跨域处理
   (0, _koaConvert2.default)((0, _koaCors2.default)({
-    origin: function origin(request) {
-      var hostArr = ['localhost', '127.0.0.1', 'oxoyo.github.io'];
-      var host = request.header.origin;
-      var isIncludes = false;
-      // FIXME 安全起见，上线时需注掉如下判断
-      if (!host) {
-        return '*';
-      }
-      for (var i in hostArr) {
-        if (host.includes(hostArr[i])) {
-          isIncludes = true;
-          break;
-        }
-      }
-      if (isIncludes) {
-        return host;
-      }
-      return _config.System.host;
-    },
+    origin: true,
     exposeHeaders: [],
     maxAge: 5,
     credentials: true,

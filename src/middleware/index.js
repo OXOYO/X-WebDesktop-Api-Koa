@@ -24,29 +24,7 @@ export default function middleware (app) {
     KoaStatic('.'),
     // 跨域处理
     convert(cors({
-      origin: function (request) {
-        let hostArr = [
-          'localhost',
-          '127.0.0.1',
-          'oxoyo.github.io'
-        ]
-        let host = request.header.origin
-        let isIncludes = false
-        // FIXME 安全起见，上线时需注掉如下判断
-        if (!host) {
-          return '*'
-        }
-        for (let i in hostArr) {
-          if (host.includes(hostArr[i])) {
-            isIncludes = true
-            break
-          }
-        }
-        if (isIncludes) {
-          return host
-        }
-        return SystemConfig.host
-      },
+      origin: true,
       exposeHeaders: [],
       maxAge: 5,
       credentials: true,

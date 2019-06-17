@@ -8,6 +8,7 @@ module.exports = {
     {
       name: 'x-webdesktop-api',
       script: './dist/app.js',
+      instances: 'max',
       env: {
         COMMON_VARIABLE: 'true'
       },
