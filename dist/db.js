@@ -19,7 +19,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * 数据库
  */
 
-var dbType = process.env.NODE_ENV === 'development' ? 'localhost' : 'heroku';
+var dbType = process.env.NODE_ENV === 'development' ? 'development' : 'production';
 
 var db = new _sequelize2.default(_config.DB[dbType].database, _config.DB[dbType].username, _config.DB[dbType].password, {
   host: _config.DB[dbType].host,

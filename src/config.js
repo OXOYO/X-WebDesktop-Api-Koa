@@ -12,20 +12,21 @@ export const System = {
 }
 
 export const DB = {
-  localhost: {
+  // 开发环境
+  development: {
     host: 'localhost',
     port: 3306,
     username: 'root',
     password: '',
     database: 'x-webdesktop-v2'
   },
-  // heroku上数据库配置
-  heroku: {
-    host: 'a07yd3a6okcidwap.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+  // 正式环境
+  production: {
+    host: '',
     port: 3306,
-    username: 'vuc6l55k1pqa7xn2',
-    password: 'zav87tg51xf5dh6g',
-    database: 'zaysac01ah85qxbg'
+    username: '',
+    password: '',
+    database: ''
   }
 }
 
@@ -59,6 +60,8 @@ export const uploadConfig = {
 
 // 日志配置
 export const Log = {
+  // FIXME 线上使用pm2管理服务时启用，用于解决log4js在pm2下日志丢失问题
+  pm2: false,
   appenders: {
     out: {
       type: 'console'

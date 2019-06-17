@@ -8,7 +8,7 @@ import Sequelize from 'sequelize'
 import { DB as dbConfig } from './config'
 
 // 判断环境
-let dbType = process.env.NODE_ENV === 'development' ? 'localhost' : 'heroku'
+let dbType = process.env.NODE_ENV === 'development' ? 'development' : 'production'
 
 const db = new Sequelize(
   dbConfig[dbType].database,
