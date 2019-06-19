@@ -46,7 +46,10 @@
 ## Production
 
 ```bash
-  sudo pm2 start ecosystem.config.js --name x-webDesktop-api --env production
+  // 单纯pm2使用时
+  pm2 start ecosystem.config.js --name x-webDesktop-api --env production
+  // 配合alinode使用时
+  ENABLE_NODE_LOG=YES pm2 start ecosystem.config.js --name x-webDesktop-api --env production
 ```
 
 ## Preview
