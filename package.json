@@ -49,10 +49,9 @@
     "eslint-plugin-html": "^1.7.0",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^3.0.1",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-eslint": "^3.0.1",
-    "gulp-nodemon": "^2.2.1",
-    "gulp-sequence": "^0.4.6",
+    "gulp-nodemon": "^2.4.2",
     "nodemon": "^1.11.0"
   },
   "engines": {

@@ -14,7 +14,7 @@ import session from 'koa-generic-session'
 import KoaStatic from 'koa-static'
 
 import pipe from './pipe'
-import { System as SystemConfig } from '../config'
+// import { System as SystemConfig } from '../config'
 
 // FIXME 如下中间件存在问题，会导致路由加载失败，待查。
 export default function middleware (app) {

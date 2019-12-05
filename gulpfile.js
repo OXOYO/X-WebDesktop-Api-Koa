@@ -5,7 +5,6 @@
 const gulp = require('gulp')
 const gulpEslint = require('gulp-eslint')
 const gulpNodemon = require('gulp-nodemon')
-const gulpSequence = require('gulp-sequence')
 const eslintFriendlyFormatter = require('eslint-friendly-formatter')
 
 const config = {
@@ -55,15 +54,16 @@ const lintFiles = (files) => {
 }
 
 // eslint
-gulp.task('ESlint', () => {
+gulp.task('ESlint', (done) => {
   lintFiles([
     'src/**',
     '!node_modules/**'
   ])
+  done()
 })
 
 // nodemon
-gulp.task('nodemon', () => {
+gulp.task('nodemon', (done) => {
   let stream = gulpNodemon({
     script: config.server.script,
     ext: 'js',
@@ -73,7 +73,8 @@ gulp.task('nodemon', () => {
     tasks: (changedFiles) => {
       lintFiles(changedFiles)
       return []
-    }
+    },
+    done: done
   })
   stream.on('restart', () => {
     console.log('Service restarted!')
@@ -86,7 +87,8 @@ gulp.task('nodemon', () => {
 
 // default
 gulp.task('default', () => {
-  gulpSequence('ESlint', 'nodemon')(() => {
+  return gulp.series('ESlint', 'nodemon', (done) => {
     console.log('Service started!')
-  })
+    done()
+  })()
 })
