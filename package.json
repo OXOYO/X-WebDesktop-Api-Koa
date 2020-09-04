@@ -34,7 +34,7 @@
     "path": "^0.12.7",
     "promise-mysql": "^3.0.1",
     "require-directory": "^2.1.1",
-    "sequelize": "^4.3.0",
+    "sequelize": "^6.3.5",
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
